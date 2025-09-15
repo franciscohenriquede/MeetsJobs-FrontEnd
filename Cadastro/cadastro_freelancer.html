@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Home/style.css" class="style">
+    <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">
+    <title>Cadastro Freelancer</title>
+</head>
+
+<body>
+    <div class="faixa"></div>
+    <div class="title-cadastro-freela">
+        <h3>CADASTRAR-SE COMO FREELANCER</h3>
+        <hr />
+    </div>
+    <div class="forms" >
+        <div class="freela">
+          <form class="form-freela-1" onsubmit= "criarFreelancer(); return false;" >
+             <div class="form-freela-input">
+                    <div class="form-freela">
+                        <input type="text" placeholder="Nome completo" id="nome_completo" name="nome_completo" required>
+                        <input type="email" placeholder="Email" id="email" name="email" required>
+                        <input type="text" placeholder="Telefone" id="telefone" name="telefone" required>
+                        <input type="text" placeholder="CPF | CNPJ" id="cpf_cnpj" name="cpf_cnpj" required>
+                        <p>data de nascimento</p>
+                        <input type="date" placeholder="Data de nascimento" id="data_nascimento" name="data_nascimento" required>
+                    </div>
+                    <div class="form-freela">
+                        <input type="password" placeholder="Senha" id="senha" name="senha" required>
+                        <input type="password" placeholder="confirma Senha" id="password" name="password" required>
+                        <input id="descricao" placeholder="Descrição de suas habilidades" name="descricao" style="height: 50px;">
+                        <select name="habilidades" id="competencias">
+                            <option>Habilidades e Competências</option>
+                            <option value="Mecânica">Mecânica</option>
+                            <option value="Cozinha">Cozinha</option>
+                            <option value="Limpeza">Limpeza</option>
+                            <option value="Elétrica">Elétrica</option>
+                            <option value="Eventos">Eventos</option>
+                            <option value="Carpintaria">Carpintaria</option>
+                            <option value="Garçom">Garçom</option>
+                            <option value="Marceneiro">Marceneiro</option>
+                            <option value="Eletricista">Eletricista</option>
+                            <option value="Cabeleireiro">Cabeleireiro</option>
+                            <option value="Pedreiro">Pedreiro</option>
+                            <option value="Jardinagem">Jardinagem</option>
+                            <option value="Pintor">Pintor</option>
+                            <option value="Designer de Interiores">Designer de Interiores</option>
+                            <option value="Programador">Programador</option>
+                            <option value="Fotógrafo">Fotógrafo</option>
+                            <option value="Advogado">Advogado</option>
+                          </select>
+                   </div>
+                   <div class="form-freela">   
+                   <input type="text" placeholder="CEP" id="cep" name="cep" required>
+                     <input type="text" placeholder="Rua" id="Rua" name="Rua" required>
+                     <input type="text" placeholder="Bairro" id="Bairro" name="Bairro" required>
+                     <select name="Cidade" id="Cidade">
+                     <option>Cidade</option>
+                     <option value="São Paulo">São Paulo</option>
+                     <option value="Rio de Janeiro">Rio de Janeiro</option>
+                     <option value="Belo Horizonte">Belo Horizonte</option>
+                     <option value="Porto Alegre">Porto Alegre</option>
+                     <option value="Curitiba">Curitiba</option>
+                     <option value="Salvador">Salvador</option>
+                     <option value="Fortaleza">Fortaleza</option>
+                     <option value="Brasília">Brasília</option>
+                     <option value="Recife">Recife</option>
+                     <option value="Manaus">Manaus</option>
+                     <option value="Belém">Belém</option>
+                     <option value="Goiânia">Goiânia</option>
+                     <option value="Vitória">Vitória</option>
+                     <option value="Florianópolis">Florianópolis</option>
+                     <option value="Natal">Natal</option>
+                     <option value="Cuiabá">Cuiabá</option>
+                     <option value="Campo Grande">Campo Grande</option>
+                     <option value="João Pessoa">João Pessoa</option>
+                     <option value="São Luís">São Luís</option>
+                     <option value="Aracaju">Aracaju</option>
+                     <option value="Maceió">Maceió</option>
+                     <option value="Teresina">Teresina</option>
+                     <option value="Macapá">Macapá</option>
+                     <option value="Boa Vista">Boa Vista</option>
+                     <option value="Rio Branco">Rio Branco</option>
+                     <option value="Palmas">Palmas</option>
+                     <option value="Porto Velho">Porto Velho</option>
+                    
+                     <input type="text" placeholder="Estado" id="Estado" name="Estado" required>
+                    </div>
+                </div>
+               <button class="btn-cadastrar" type="submit">FINALIZAR CADASTRO</button>
+               <p id="responseMessage"></p> 
+            </form>
+    
+
+        </div>
+
+    </form>
+  
+  <script>
+        async function criarFreelancer() {
+            // Obtenha os valores do formulário
+            const name = document.getElementById('nome_completo').value;
+          const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const cpfCnpj = document.getElementById('cpf_cnpj').value;
+            const dataNascimento = document.getElementById('data_nascimento').value;
+            const senha = document.getElementById('senha').value;
+            const confirmpassword = document.getElementById('password').value;
+            const descricao = document.getElementById('descricao').value;
+            const profissao = document.getElementById('competencias').value;
+            let cep = document.getElementById('cep').value;
+                cep = "Cep: " + cep + " ";
+                let rua = document.getElementById('Rua').value;
+                rua = "Rua: " + rua + " ";
+                let bairro = document.getElementById('Bairro').value;
+                bairro = "Bairro: " + bairro + " ";
+                let cidade = document.getElementById('Cidade').value;
+                Cidade = "Cidade: " + cidade + " ";
+                cidade = cidade;
+                let estado = document.getElementById('Estado').value;
+                estado = "Estado: " + estado + " ";
+                let endereco = rua + " | " + bairro +" | " + Cidade +" | " + estado +" | "+ cep ;
+           
+            const response = await fetch('http://localhost:3000/user/registerFreelancer', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password: senha , confirmpassword , name , telefone , cpfCnpj , 
+            dataNascimento , descricao , profissao, endereco, cidade,
+
+          }),
+        });
+       
+            const result = await response.json(); 
+
+const responseMessage = document.getElementById('responseMessage');
+if (result.msg === "Usuário criado com sucesso!") {
+  responseMessage.style.color = 'green';
+  window.location.href = '../Login/login.html';
+; // Redireciona para a página principal
+} else { 
+    responseMessage.innerText = result.msg;
+    responseMessage.style.color = 'red';
+}
+}
+           
+        
+    </script>
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+       
+    
+        
+</body>
+
+</html>

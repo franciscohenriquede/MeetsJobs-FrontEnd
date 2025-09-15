@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../Home/style.css" class="style" />
+  <title>Cadastro de vagas</title>
+</head>
+<style>
+  .button-group button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .button-group button:hover {
+    background-color: #f0f0f0;
+  }
+
+  /* Estilo para o botão selecionado */
+  .button-group .selected {
+    background-color: #5f4589;
+    color: white;
+  }
+</style>
+
+<body>
+  <div class="fundo-form-vagas">
+    <div class="form-vagas">
+      <button onclick="voltarPagina()">Voltar</button>
+      <h3>CADASTRAR UMA VAGA</h3>
+      <form onsubmit="criarVaga(); return false;" class="form-vagas-form" id="form-vagas-form">
+
+        <label for="">Descrição:</label>
+        <textarea style="height: 50px; border-radius:  5px;"
+          placeholder="Digite uma descrição para a vaga: Coloque data e horário e detalhes de como é a execução do serviço. Não forneça localização e telefone de contato na descrição."
+          id="descricao"></textarea>
+
+        <select name="AreaDeDominio" id="AreaDeDominio">
+
+          <option>Area de Domínio</option>
+          <option value="Mecânica">Mecânica</option>
+          <option value="Cozinha">Cozinha</option>
+          <option value="Limpeza">Limpeza</option>
+          <option value="Elétrica">Elétrica</option>
+          <option value="Eventos">Eventos</option>
+          <option value="Carpintaria">Carpintaria</option>
+          <option value="Garçom">Garçom</option>
+          <option value="Marceneiro">Marceneiro</option>
+          <option value="Eletricista">Eletricista</option>
+          <option value="Cabeleireiro">Cabeleireiro</option>
+          <option value="Pedreiro">Pedreiro</option>
+          <option value="Jardinagem">Jardinagem</option>
+          <option value="Pintor">Pintor</option>
+          <option value="Designer de Interiores">Designer de Interiores</option>
+          <option value="Programador">Programador</option>
+          <option value="Fotógrafo">Fotógrafo</option>
+          <option value="Advogado">Advogado</option>
+        </select>
+        <label for="calendario">Data de expiração</label>  
+        <input type="date" id="date" name="date" required>
+      
+        <h2> Endereço Cadastrado</h2>
+        <label id="enderecoPrincipal" for="endereco-principal">Endereço Principal:</label><br>
+        <div class="button-group">
+          <h2>Deseja usar o mesmo endereço ?</h2>
+          <button id="btn-sim" type="button" onclick="selecionar('sim')">Sim</button>
+          <button id="btn-nao" type="button" onclick="selecionar('nao')">Não</button>
+          <p id="resultado"></p>
+          <div class="endereco" id="ElementsEndereco">
+          </div>
+        </div>
+
+
+        <button id="Postar" type="submit">Postar vaga</button>
+        <p id="responseMessage"></p>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+
+
+
+
+
+  function CarregarPagina() {
+
+    const token = localStorage.getItem("token");
+    const userEndereco = localStorage.getItem("userEndereco");
+    document.getElementById('enderecoPrincipal').textContent = ` ${userEndereco}`;
+
+
+  }
+  CarregarPagina()
+
+
+  function voltarPagina() {
+    window.history.back(); // Retorna à página anterior
+  }
+
+  let selectedOption = null; // Variável para armazenar a escolha do usuário (sim/não)
+
+  function selecionar(opcao) {
+    const btnSim = document.getElementById('btn-sim');
+    const btnNao = document.getElementById('btn-nao');
+    const resultado = document.getElementById('resultado');
+    const vagasList = document.getElementById('ElementsEndereco');
+
+    // Atualiza a seleção
+    selectedOption = opcao;
+
+    // Remove estilos de seleção de ambos os botões
+    btnSim.classList.remove('selected');
+    btnNao.classList.remove('selected');
+
+    // Adiciona estilo ao botão selecionado
+    if (opcao === 'sim') {
+      btnSim.classList.add('selected');
+      resultado.textContent = "Você escolheu: Sim";
+      vagasList.innerHTML = ''; // Limpa o campo de endereço adicional
+    } else if (opcao === 'nao') {
+      btnNao.classList.add('selected');
+      resultado.textContent = "Você escolheu: Não , portanto digite o novo endereço";
+      adicionarCamposEndereco(vagasList); // Adiciona campos de endereço
+    }
+  }
+
+  function adicionarCamposEndereco(container) {
+    container.innerHTML = `
+            <input  style="width: 50px;" type="text" placeholder="Rua" id="Rua" name="Rua" required> 
+    <input style="width: 50px;" type="text" placeholder="Bairro" id="Bairro" name="Bairro" required>
+    <select style="width: 90px; height: 40px; border-radius:  5px; margin: 5px " name="Cidade" id="Cidade">
+                     <option>Cidade</option>
+                   <option value="Aracaju">Aracaju</option>
+<option value="Belém">Belém</option>
+<option value="Belo Horizonte">Belo Horizonte</option>
+<option value="Boa Vista">Boa Vista</option>
+<option value="Brasília">Brasília</option>
+<option value="Campo Grande">Campo Grande</option>
+<option value="Curitiba">Curitiba</option>
+<option value="Cuiabá">Cuiabá</option>
+<option value="Florianópolis">Florianópolis</option>
+<option value="Fortaleza">Fortaleza</option>
+<option value="Goiânia">Goiânia</option>
+<option value="João Pessoa">João Pessoa</option>
+<option value="Macapá">Macapá</option>
+<option value="Maceió">Maceió</option>
+<option value="Manaus">Manaus</option>
+<option value="Natal">Natal</option>
+<option value="Palmas">Palmas</option>
+<option value="Porto Alegre">Porto Alegre</option>
+<option value="Porto Velho">Porto Velho</option>
+<option value="Recife">Recife</option>
+<option value="Rio Branco">Rio Branco</option>
+<option value="Rio de Janeiro">Rio de Janeiro</option>
+<option value="São Luís">São Luís</option>
+<option value="São Paulo">São Paulo</option>
+<option value="Teresina">Teresina</option>
+<option value="Vitória">Vitória</option>
+
+    <input style="width: 50px;" type="text" placeholder="Estado" id="Estado" name="Estado" required>
+    <input style="width: 50px;"  type="text" placeholder="CEP" id="cep" name="cep" required>
+  `;
+  }
+
+  async function criarVaga() {
+    // Obtenha os valores do formulário
+    const descricao = document.getElementById("descricao").value;
+    const AreaDeDominio = document.getElementById("AreaDeDominio").value;
+    const criador = localStorage.getItem("userid");
+    const token = localStorage.getItem("token");
+    const criador_name = localStorage.getItem("userName");
+
+    // Determinar o endereço com base na seleção
+    let endereco;
+    if (selectedOption === 'sim') {
+      endereco = localStorage.getItem("userEndereco");
+      cidade = localStorage.getItem("userCidade");
+    } else if (selectedOption === 'nao') {
+      endereco = capturarNovoEndereco();
+      cidade = capturarNovaCidade();
+    } else {
+      alert("Por favor, escolha se deseja usar o mesmo endereço ou não.");
+      return;
+    }
+
+    // Enviar os dados para a API
+    const response = await fetch("http://localhost:3000/vagas/registerVagas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+      body: JSON.stringify({
+        descricao,
+        AreaDeDominio,
+        criador,
+        endereco,
+        criador_name,
+        cidade
+      }),
+    });
+
+    const result = await response.json();
+    const responseMessage = document.getElementById("responseMessage");
+    if (result.msg === "vaga criada com sucesso!!") {
+      responseMessage.style.color = "green";
+      // Recarrega a página
+
+      // Redireciona para a página principal
+    } else {
+      responseMessage.innerText = result.msg;
+      responseMessage.style.color = "red";
+    }
+  }
+
+  function capturarNovaCidade() {
+    const cidade = document.getElementById('Cidade').value || '';
+    return cidade;
+  }
+  function capturarNovoEndereco() {
+    const rua = document.getElementById('Rua').value || '';
+    const bairro = document.getElementById('Bairro').value || '';
+    const cidade = document.getElementById('Cidade').value || '';
+    const estado = document.getElementById('Estado').value || '';
+    const cep = document.getElementById('cep').value || '';
+
+    return `Rua: ${rua} | Bairro: ${bairro} | Cidade: ${cidade} | Estado: ${estado} | CEP: ${cep}`;
+  }
+</script>

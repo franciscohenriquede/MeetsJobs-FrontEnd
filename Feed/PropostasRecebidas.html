@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propostas Recebidas</title>
+
+  <link rel="stylesheet" href="../Home/style.css">
+  <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="../Home/home.css">
+  <script src="../js/logout.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .titulo-header {
+      display: flex;
+      align-items: end;
+      gap: 40px;
+    }
+
+    .titulo-header h4 {
+      color: #5f4589;
+      font-family: Bebas Neue;
+      font-size: 30px;
+      font-weight: 400;
+    }
+
+    .vaga {
+      background-color: white;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 5px;
+    }
+
+    .vaga h3 {
+      margin: 0;
+    }
+
+    .vaga p {
+      margin: 5px 0;
+    }
+
+    .no-vagas {
+      text-align: center;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="container-fluid">
+    <img src="../assets/logo.png" alt="Logo" class="logo-header">
+    <button class="back-button" onclick="window.history.back()">←</button>
+    <h1 id="TituloVaga">Aqui estão as propostas que os freelancers fizeram para a vaga</h1>
+    <div class="dropdown">
+      <button class="login-btn-header dropdown-btn">Minha Conta</button>
+      <div class="dropdown-content">
+
+        <a href="../EditProfile/edit_profile.html">Editar Dados</a>
+        <a href="../Feed/feed_freelancers.html">Freelancers</a>
+        <a href="../Feed/feed_vagas.html">Mural de serviços</a>
+        <a href="#" onclick="logout()">Sair da Conta</a>
+      </div>
+    </div>
+  </header>
+
+  <div id="vagaContainer" style="grid-template-columns: 1fr 1fr;display: grid;"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const vagaId = localStorage.getItem("vagaId");
+
+      if (!vagaId) {
+        alert("Nenhuma vaga foi selecionada.");
+        return;
+      }
+
+      carregarVagas(vagaId);
+    });
+
+    async function carregarVagas(vagaId) {
+      try {
+        const response = await fetch(`http://localhost:3000/propostas/TodasPropostas`);
+
+        if (!response.ok) {
+          throw new Error("Erro ao buscar propostas.");
+        }
+
+        const propostas = await response.json();
+        const propostasFiltradas = propostas.filter(proposta => proposta.id_vaga === vagaId);
+
+        const vagaContainer = document.getElementById("vagaContainer");
+        vagaContainer.innerHTML = ""; // Limpa antes de renderizar
+
+        if (propostasFiltradas.length === 0) {
+          vagaContainer.innerHTML = "<p class='no-vagas'>Nenhuma proposta recebida.</p>";
+          return;
+        }
+
+        propostasFiltradas.forEach((proposta) => {
+          const vagaElement = document.createElement("div");
+          vagaElement.classList.add("vaga");
+
+          let statusMensagem = "";
+          let botoesAcao = "";
+
+          if (proposta.status === "Aguardando") {
+            botoesAcao = `
+              <button class="btn btn-success" onclick="AceitarProposta('${proposta._id}')">Aceitar Proposta</button>
+              <button class="btn btn-danger" onclick="recusarProposta('${proposta._id}')">Recusar Proposta</button>
+            `;
+          } else if (proposta.status === "aceita") {
+            statusMensagem = `
+              <p style="background-color: black; color: white; padding: 10px; border-radius: 5px;">
+                Proposta aceita. O freelancer receberá os detalhes do serviço. 
+                Você tem até 24 horas para cancelar sem cobrança de taxa.
+              </p>
+            `;
+            botoesAcao = `
+              <button class="btn btn-warning" onclick="CancelarProposta('${proposta._id}')">Cancelar Proposta</button>
+            `;
+          }
+          else if (proposta.status === "Recusada") {
+            statusMensagem = `
+              <p style="background-color: black; color: white; padding: 10px; border-radius: 5px;">
+                Você Recusou esta proposta, não a nda mais o que possa fazer. Você de 5 minutos para desfazer essa ação.
+              </p>
+            `;
+            botoesAcao = `
+              <button class="btn btn-warning" onclick="CancelarProposta('${proposta._id}')">Cancelar Proposta</button>
+            `;
+          }
+          
+
+          vagaElement.innerHTML = `
+            <div style="background-color: #6A1B9A; color: #fff; padding: 16px; border-radius: 8px; margin: 10px 0;">
+              <h3>Proposta</h3>
+              <p><strong>Oferta:</strong> ${proposta.oferta}</p>
+              <p><strong>Detalhes:</strong> ${proposta.detalhes}</p>
+              <p><strong>Duração:</strong> ${proposta.duracao}</p>
+              <p><strong>Data de Criação:</strong> ${proposta.dateCreat}</p>
+              ${botoesAcao}
+              ${statusMensagem}
+            </div>
+          `;
+
+          vagaContainer.appendChild(vagaElement);
+        });
+      } catch (error) {
+        console.error("Erro:", error);
+        document.getElementById("vagaContainer").innerHTML = 
+          '<p class="error">Erro ao carregar propostas. Tente novamente.</p>';
+      }
+    }
+
+    async function AceitarProposta(propostaId) {
+      try {
+        const response = await fetch(`http://localhost:3000/propostas/updatePropostaStatus/${propostaId}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: "aceita" }),
+        });
+
+        if (!response.ok) throw new Error("Erro ao aceitar proposta");
+
+        alert("Proposta aceita com sucesso!");
+        carregarVagas(localStorage.getItem("vagaId"));
+      } catch (error) {
+        console.error("Erro ao aceitar proposta:", error);
+        alert("Erro ao aceitar proposta. Tente novamente.");
+      }
+    }
+
+    async function CancelarProposta(propostaId) {
+      try {
+        const response = await fetch(`http://localhost:3000/propostas/updatePropostaStatus/${propostaId}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: "Aguardando" }),
+        });
+
+        if (!response.ok) throw new Error("Erro ao cancelar proposta");
+
+        alert("Proposta cancelada com sucesso!");
+        carregarVagas(localStorage.getItem("vagaId"));
+      } catch (error) {
+        console.error("Erro ao cancelar proposta:", error);
+        alert("Erro ao cancelar proposta. Tente novamente.");
+      }
+    }
+
+    async function recusarProposta(propostaId) {
+      try {
+        const response = await fetch(`http://localhost:3000/propostas/updatePropostaStatus/${propostaId}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: "Recusada" }),
+        });
+
+        if (!response.ok) throw new Error("Erro ao Recusar proposta");
+
+        alert("Proposta Recusada com sucesso!");
+        carregarVagas(localStorage.getItem("vagaId"));
+      } catch (error) {
+        console.error("Erro ao cancelar proposta:", error);
+        alert("Erro ao cancelar proposta. Tente novamente.");
+      }
+    }
+  </script>
+</body>
+</html>

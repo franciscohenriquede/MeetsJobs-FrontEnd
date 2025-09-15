@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" class="style" />
+    <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="home.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous" />
+    <title>MEET JOBS</title>
+  </head>
+  <style>
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o body ocupe a altura total da janela */
+    margin: 0;
+  }
+  .rodapeFeed {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 50px;
+    color: white;
+    background-color: #2f1854;
+    width: 100%; /* Faz o rodapé ocupar toda a largura */
+  }
+  
+</style>
+  
+  <body>
+    <header class="container-fluid">
+      <img src="../assets/logo.png" alt="" class="logo-header" />
+ 
+     <a href="  ../Feed/feed_freelancers.html"><button class="login-btn-header">Freelancers</button></a>
+      <a href="../Feed/feed_vagas.html"><button class="login-btn-header">Mural de serviços</button></a>
+      <div class="dropdown">
+        <button class="login-btn-header dropdown-btn">Minha Conta</button>
+        <div class="dropdown-content">
+          <a href="../EditProfile/edit_profile.html">Editar Dados</a>
+          <a href="../Feed/vagasCriadas.Html">Vagas Criadas</a>
+          <a href="../Cadastro/cadastro_vagas.html">Crie Sua Vaga </a>
+          <script src="../js/logout.js"></script>
+
+          <a href="#" onclick="logout()">Sair da Conta</a>
+        </div>
+      </div>
+      
+    
+    
+    
+    </header>
+    <main>
+      <section class="banner container-fluid">
+        <div class="row">
+          <p class="col-12 text-center fs-1">
+            Liberte seu Potencial, Encontre seu Próximo Desafio: Freelancers e Vagas em um Clique
+          </p>
+          <h1 class="col-12 text-center">
+            <span id="userName">Bem-vindo(a), Visitante!</span>
+          </h1>
+        </div>
+      </section>
+       <div class="row btn-img">
+          <div
+            class="btn-cadastrar col-md-6 col-sm-12 order-2 order-md-1 mt-3 d-flex align-items-center justify-content-center">
+            <a href="../Cadastro/cadastro_vagas.html"><button class="cadastrar fs-1">olá Contratante Crie sua Vaga aqui   </button></a>
+          </div>
+          <div class="col-md-6 col-sm-12 order-1 order-md-2">
+            <img class="img-banner w-100" src="../assets/img-banner.png" alt="" />
+          </div>
+        </div>
+      </section>
+      <section class="instrucoes container-fluid">
+        <div class="row">
+          <p class="col-12 text-center">COMECE AGORA!</p>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-12 d-flex align-items-center justify-content-center">
+            <img class="instrucoes-card img-fluid" src="../assets/Frame 2.png" alt="" />
+          </div>
+          <div class="col-md-4 col-sm-12 d-flex align-items-center justify-content-center">
+            <img class="instrucoes-card img-fluid" src="../assets/Frame 3.png" alt="" />
+          </div>
+          <div class="col-md-4 col-sm-12 d-flex align-items-center justify-content-center">
+            <img class="instrucoes-card img-fluid" src="../assets/Frame 4.png" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section1 container-fluid mb-4">
+        <p class="title row">SERVIÇOS OFERECIDOS</p>
+        <div class="cards row">
+          <div
+            class="card text-dark card-has-bg col-xl-3 col-lg-4 col-md-8 m-4"
+            style="
+              background-image: url('https://www.infoescola.com/wp-content/uploads/2017/05/eletricista_567307042.jpg');
+            ">
+            <div class="card-img-overlay d-flex align-items-center justify-content-center">
+              <h4 class="card-title text-white">ELETRICA</h4>
+            </div>
+          </div>
+          <div
+            class="card text-dark card-has-bg col-xl-3 col-lg-4 col-md-8 m-4"
+            style="
+              background-image: url('https://img.freepik.com/fotos-premium/carpinteiro-senior-em-uniforme-trabalha-em-uma-maquina-de-carpintaria-na-fabricacao-de-carpintaria_194143-9245.jpg');
+            ">
+            <div class="card-img-overlay d-flex align-items-center justify-content-center">
+              <h4 class="card-title text-white">CARPINTARIA</h4>
+            </div>
+          </div>
+          <div
+            class="card text-dark card-has-bg col-xl-3 col-lg-4 col-md-8 m-4"
+            style="
+              background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8_ga1kyq5Mmmi1kDk4r3fwWpSYY3fZMsELxYj9Z8U22QqFLdpYKlcW4HGlHx2qoMhkBQ&usqp=CAU');
+            ">
+            <div class="card-img-overlay d-flex align-items-center justify-content-center">
+              <h4 class="card-title text-white">LIMPEZA</h4>
+            </div>
+          </div>
+          <div
+            class="card text-dark card-has-bg col-xl-3 col-lg-4 col-md-8 m-4"
+            style="
+              background-image: url('https://th.bing.com/th/id/OIP.OZZBcq1RdJ7IUSvQhc3bagHaE8?rs=1&pid=ImgDetMain');
+            ">
+            <div class="card-img-overlay d-flex align-items-center justify-content-center">
+              <h4 class="card-title text-white">COZINHA</h4>
+            </div>
+          </div>
+          <div
+            class="card text-dark card-has-bg col-xl-3 col-lg-4 col-md-8 m-4"
+            style="
+              background-image: url('https://s.calendarr.com/upload/datas/ga/rc/garcom-e-garconete_c.jpg?auto_optimize=low&width=640');
+            ">
+            <div class="card-img-overlay d-flex align-items-center justify-content-center">
+              <h4 class="card-title text-white">GARÇOM</h4>
+            </div>
+          </div>
+          <div
+            class="card text-dark card-has-bg col-xl-3 col-lg-4 col-md-8 m-4"
+            style="
+              background-image: url('https://th.bing.com/th/id/OIP.ER5lwiZ5fn2KiISB8M9r0wHaER?w=256&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7');
+            ">
+            <div class="card-img-overlay d-flex align-items-center justify-content-center">
+              <h4 class="card-title text-white">MECÂNICA</h4>
+            </div>
+          </div>
+        </div>
+        <button class="ver-mais row">VER MAIS</button>
+      </section>
+      <section class="comments-section container-fluid">
+        <div class="row">
+          <p class="col-12 text-center">Algumas avaliações</p>
+        </div>
+        <div class="row">
+          <div class="comments col-12 d-flex justify-content-center align-items-center">
+            <div class="row w-100 d-flex justify-content-center align-items-center">
+              <div class="comment-card col-10 col-md-4 col-lg-2 m-2">
+                Muito bom o serviço!
+                <div>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                </div>
+              </div>
+              <div class="comment-card col-10 col-md-4 col-lg-2 m-2">
+                O site entrega confiança e confidencialidade!
+                <div>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                </div>
+              </div>
+              <div class="comment-card col-10 col-md-4 col-lg-2 m-2">
+                Profissionais para todo tipo de serviço!
+                <div>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                  <span>&#11088;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="banner2 container-fluid">
+        <div class="banner2-div row m-5">
+          <img src="../assets/logo.png" alt="" class="logo col" />
+          <p class="col d-flex justify-content-center align-items-center">
+            MEET JOBS, A ESCOLHA CERTA PARA ENCONTRAR UM SERVIÇO OU FREELANCER!
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="rodape container-fluid">
+      <div class="rod1">
+        <p style="filter: drop-shadow(3px 5px 4px rgb(145, 0, 213)); font-weight: bold; font-size: 20px">SOCIAL</p>
+        <div class="social">
+          <a href="#"><i class="fab fa-instagram" id="social"></i></a>
+          <a href="#"><i class="fab fa-facebook-f" id="social"></i></a>
+          <a href="#"><i class="fab fa-whatsapp" id="social"></i></a>
+          <a href="#"><i class="fab fa-twitter" id="social"></i></a>
+        </div>
+      </div>
+      <div class="rod2">
+        <p>Termos e Condições</p>
+        <p>Sobre nós</p>
+        <p>Parceiros</p>
+       <p></p>
+       </div>
+      <div class="rod3">
+        <p style="filter: drop-shadow(3px 5px 4px rgb(145, 0, 213)); font-weight: bold; font-size: 20px">CONTATO</p>
+        <div class="contact">
+         
+          <p>meetjobs@gmail.com</p>
+          <p>+55 (31) 99999-9999</p>
+        </div>
+      </div>
+    </footer>
+ 
+ 
+
+ <script>
+
+
+window.onload = function () {
+  // Verifique o localStorage imediatamente após o carregamento da página
+  const token = localStorage.getItem('token');
+  const userName = localStorage.getItem('userName');
+  const userTipo = localStorage.getItem('usertipo');
+  const userEmail = localStorage.getItem("userEmail"); //
+  console.log("userEmail no localStorage:", userEmail);
+  console.log("Token no localStorage:", token);
+  console.log("Nome no localStorage:", userName);
+  console.log("Nome no localStorage:", userTipo); 
+  if (token && userName  ) {
+    // Se os dados estiverem presentes, exiba o nome do usuário
+    document.getElementById('userName').textContent = `Bem-vindo(a), ${userName}!`;
+  } else {
+    console.error('Dados não encontrados no localStorage');
+    window.location.href = '../home/index.html'; // Redireciona para a página de login se os dados não estiverem presentes
+  }
+};
+
+
+
+function logout() {
+    localStorage.removeItem('Token');
+   localStorage.removeItem('userName');
+   window.location.href = '../home/index.html'; // Redireciona para login após logout
+ }
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+    
+ 
+ 
+ 
+ 
+  </body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="../script.js"></script>
+  <link rel="stylesheet" href="../Home/style.css" class="style" />
+  <link rel="shortcut icon" href=".\assets\logo.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="../Home/home.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="../js/logout.js"></script>
+
+
+  <title>Vagas</title>
+
+</head>
+<header class="container-fluid">
+  <img src="../assets/logo.png" alt="" class="logo-header" />
+  <button class="back-button" onclick="window.history.back()">←</button>
+  <a href="javascript:history.back()">
+
+  </a>
+  <div class="dropdown">
+    <button class="login-btn-header dropdown-btn">Minha Conta</button>
+    <div class="dropdown-content">
+      <a href="../EditProfile/edit_profile.html">Editar Dados</a>
+      <a href="../Logout/logout.html">Minha Candidaturas</a>
+      <a href="#" onclick="logout()">Sair da Conta</a>
+    </div>
+  </div>
+
+
+
+
+</header>
+
+
+
+<body>
+
+  <title>Feed de Vagas</title>
+  <div class="faixa"></div>
+  <header>
+    <div class="header-feed-vagas">
+      <div class="titulo-header">
+        <a href="/index.html"><img src=".\assets\logo.png" alt="" /></a>
+        <h4>VAGAS DISPONÍVEIS</h4>
+      </div>
+      <div class="perfil-icon" id="agora">
+        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none">
+          <circle cx="26" cy="26" r="24.5" fill="white" stroke="#2F1854" stroke-width="3" />
+          <path
+            d="M26.4126 24.7619C30.2889 24.7619 33.4285 21.6223 33.4285 17.746C33.4285 13.8698 30.2889 10.7302 26.4126 10.7302C22.5363 10.7302 19.3967 13.8698 19.3967 17.746C19.3967 21.6223 22.5363 24.7619 26.4126 24.7619ZM26.4126 28.2698C21.7295 28.2698 12.3809 30.6202 12.3809 35.2857V38.7937H40.4444V35.2857C40.4444 30.6202 31.0957 28.2698 26.4126 28.2698Z"
+            fill="#2F1854" />
+        </svg>
+        <h3 class="agora">FREELANCER</h3>
+      </div>
+    </div>
+    <hr />
+  </header>
+  <div class="feed_vagas">
+    <div class="filtro-vagas">
+      <h3 style="text-align: center">Filtro</h3>
+      <div class="habilidades-filter">
+        <p class="filter-title">Domínios de atuação</p>
+        <select name="habilidades" id="habilidades-filter">
+          <option value="null">Areas de Domínio</option>
+          <option value="Mecânica">Mecânica</option>
+          <option value="Cozinha">Cozinha</option>
+          <option value="Limpeza">Limpeza</option>
+          <option value="Elétrica">Elétrica</option>
+          <option value="Eventos">Eventos</option>
+          <option value="Carpintaria">Carpintaria</option>
+          <option value="Garçom">Garçom</option>
+          <option value="Marceneiro">Marceneiro</option>
+          <option value="Eletricista">Eletricista</option>
+          <option value="Cabeleireiro">Cabeleireiro</option>
+          <option value="Pedreiro">Pedreiro</option>
+          <option value="Jardinagem">Jardinagem</option>
+          <option value="Pintor">Pintor</option>
+          <option value="Designer de Interiores">Designer de Interiores</option>
+          <option value="Programador">Programador</option>
+          <option value="Fotógrafo">Fotógrafo</option>
+          <option value="Advogado">Advogado</option>
+        </select>
+      </div>
+      <div class="filter-localizacao">
+
+        <p class="filter-title">LOCALIZAÇÃO</p>
+        <select name="habilidades" id="localizao-filter">
+          <option value="null">Cidade</option>
+          <option value="São Paulo">São Paulo</option>
+          <option value="Rio de Janeiro">Rio de Janeiro</option>
+          <option value="Belo Horizonte">Belo Horizonte</option>
+          <option value="Porto Alegre">Porto Alegre</option>
+          <option value="Curitiba">Curitiba</option>
+          <option value="Salvador">Salvador</option>
+          <option value="Fortaleza">Fortaleza</option>
+          <option value="Brasília">Brasília</option>
+          <option value="Recife">Recife</option>
+          <option value="Manaus">Manaus</option>
+          <option value="Belém">Belém</option>
+          <option value="Goiânia">Goiânia</option>
+          <option value="Vitória">Vitória</option>
+          <option value="Florianópolis">Florianópolis</option>
+          <option value="Natal">Natal</option>
+          <option value="Cuiabá">Cuiabá</option>
+          <option value="Campo Grande">Campo Grande</option>
+          <option value="João Pessoa">João Pessoa</option>
+          <option value="São Luís">São Luís</option>
+          <option value="Aracaju">Aracaju</option>
+          <option value="Maceió">Maceió</option>
+          <option value="Teresina">Teresina</option>
+          <option value="Macapá">Macapá</option>
+          <option value="Boa Vista">Boa Vista</option>
+          <option value="Rio Branco">Rio Branco</option>
+          <option value="Palmas">Palmas</option>
+          <option value="Porto Velho">Porto Velho</option>
+
+        </select>
+      </div>
+
+
+
+
+
+
+      <button onclick="Pesquisar()" id="Pesquisar">Pesquisar</button>
+    </div>
+    <div class="feed-freelancers-container" id="vagas-list"></div>
+  </div>
+  <footer class="rodape">
+    <div class="rod1">
+      <p style="filter: drop-shadow(3px 5px 4px rgb(145, 0, 213)); font-weight: bold; font-size: 20px">SOCIAL</p>
+      <div class="social">
+        <a href="#"><i class="fab fa-instagram" id="social"></i></a>
+        <a href="#"><i class="fab fa-facebook-f" id="social"></i></a>
+        <a href="#"><i class="fab fa-whatsapp" id="social"></i></a>
+        <a href="#"><i class="fab fa-twitter" id="social"></i></a>
+      </div>
+    </div>
+    <div class="rod2">
+      <p>Termos e Condições</p>
+      <p>Sobre nós</p>
+      <p>Parceiros</p>
+    </div>
+    <div class="rod3">
+      <p style="filter: drop-shadow(3px 5px 4px rgb(145, 0, 213)); font-weight: bold; font-size: 20px">CONTATO</p>
+      <div class="contact">
+        <p>meetjobs@gmail.com</p>
+        <p>+55 (31) 99999-9999</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Função para async function carregarVagas() {
+    async function carregarVagas() {
+      try {
+        const response = await fetch('http://localhost:3000/user/getUser');
+        const result = await response.json();
+        if (result.userFormatadas && result.userFormatadas.length > 0) {
+          const userList = document.getElementById('vagas-list');
+          userList.innerHTML = ''; // Limpa qualquer conteúdo existente
+
+          result.userFormatadas.forEach(user => {
+            // Cria o HTML dinamicamente com as vagas formatada
+            const vagaHTML = `
+        
+          <div class="cards-freelas">
+          <div class="freela-info">
+            <img
+              class="img-freela"
+              src="https://img.freepik.com/fotos-gratis/jovem-barbudo-com-camisa-listrada_273609-5677.jpg?size=626&ext=jpg&ga=GA1.1.1290207729.1680617905&semt=sph"
+              alt="" />
+            <div class="info">
+              <div class="info-1">
+            <details ontoggle>
+                   <summary class="freela-name">${user.profissao}</summary>
+             <div class="freela-habilidade"> ${user.name}</div>
+                <div class="freela-habilidade">Habilidade :${user.descricao}</div>
+                            <div class="freela-habilidade">Cidade : ${user.cidade}</div>
+  
+              </div>
+
+            </div>
+          </div>
+          <div class="contato-aval">
+            <button class="falar-freela" style="color:white;">FALAR COM FREELA</button>
+            <div>
+              <span>&#11088;</span>
+              <span>&#11088;</span>
+              <span>&#11088;</span>
+              <span>&#11088;</span>
+              <span>&#11088;</span>
+            </div>
+          </div>
+        </div>
+      
+           `;
+            console.log('Resposta da API:', result);
+            userList.innerHTML += vagaHTML;
+          });
+        } else {
+
+        }
+      } catch (error) {
+        console.error('Erro ao carregar vagas:', error);
+      }
+    }
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Elemento vagas-list:', document.getElementById('vagas-list'));
+      carregarVagas();
+      console.log('Resposta da API:', result);
+    });
+
+    async function Pesquisar() {
+
+      const Localizacao = document.getElementById("localizao-filter").value;
+      const LocalizacaoTratada = Localizacao === "null" ? null : Localizacao;
+      const AreaDeDominio = document.getElementById("habilidades-filter").value;
+      const AreaDeDominioTratada = AreaDeDominio === "null" ? null : AreaDeDominio;
+      console.log("teste"+Localizacao);
+ console.log("teste"+AreaDeDominio);
+  try {
+    const response = await fetch('http://localhost:3000/user/getUserFreelance');
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    const user = await response.json();
+
+    const userList = document.getElementById('vagas-list');
+    if (!userList) throw new Error('Elemento com ID "vagas-list" não encontrado.');
+
+    userList.innerHTML = ''; // Limpa qualquer conteúdo existente
+
+    let vagasPesquisadasPorad = [];
+
+    // Filtra com base nos critérios
+    if (AreaDeDominioTratada && !LocalizacaoTratada) {
+      vagasPesquisadasPorad = user.filter(
+        (user) => user.profissao === AreaDeDominio
+      );
+    } else if (AreaDeDominioTratada && LocalizacaoTratada) {
+      vagasPesquisadasPorad = user.filter(
+        (user) => user.profissao === AreaDeDominio && user.cidade === Localizacao
+      );
+    } else if (!AreaDeDominioTratada && LocalizacaoTratada) {
+      vagasPesquisadasPorad = user.filter(
+        (user) => user.cidade === Localizacao
+      );
+    }
+
+    // Renderiza cada vaga no container
+    vagasPesquisadasPorad.forEach(user => {
+      const vagaHTML = `
+      <div class="cards-freelas">
+        <div class="freela-info">
+          <img
+            class="img-freela"
+            src="https://img.freepik.com/fotos-gratis/jovem-barbudo-com-camisa-listrada_273609-5677.jpg?size=626&ext=jpg&ga=GA1.1.1290207729.1680617905&semt=sph"
+            alt="Foto do Freelancer" />
+          <div class="info">
+            <div class="info-1">
+              <details ontoggle>
+                <summary class="freela-name">${user.profissao}</summary>
+                <div class="freela-habilidade">Nome: ${user.name}</div>
+                <div class="freela-habilidade">Habilidade: ${user.descricao}</div>
+                <div class="freela-habilidade">Localização: ${user.cidade}</div>
+              </details>
+            </div>
+          </div>
+        </div>
+        <div class="contato-aval">
+          <button class="falar-freela">FALAR COM FREELA</button>
+          <div>
+            <span>&#11088;</span>
+            <span>&#11088;</span>
+            <span>&#11088;</span>
+            <span>&#11088;</span>
+            <span>&#11088;</span>
+          </div>
+        </div>
+      </div>`;
+      userList.innerHTML += vagaHTML;
+    });
+
+    if (vagasPesquisadasPorad.length === 0) {
+      userList.innerHTML = '<p>Nenhuma vaga encontrada com os critérios selecionados.</p>';
+    }
+
+  } catch (error) {
+    console.error('Erro ao carregar vagas:', error);
+    const userList = document.getElementById('vagas-list');
+    if (userList) {
+      userList.innerHTML = '<p>Ocorreu um erro ao carregar as vagas. Tente novamente mais tarde.</p>';
+    }
+  }
+}
+
+
+
+
+  </script>
+</body>
+
+</html>

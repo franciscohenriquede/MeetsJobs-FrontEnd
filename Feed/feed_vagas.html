@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="../Home/style.css" class="style" />
+  <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="../Home/home.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+   <link  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/logout.js"></script>
+  
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      /* Garante que o body ocupe a altura total da janela */
+      margin: 0;
+    }
+
+    .rodapeFeed {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 50px;
+      color: white;
+      background-color: #2f1854;
+      width: 100%;
+      /* Faz o rodapé ocupar toda a largura */
+    }
+  </style>
+</head>
+<header class="container-fluid">
+  <img src="../assets/logo.png" alt="" class="logo-header" />
+  <button class="back-button" onclick="window.history.back()">←</button>
+  <h1>Aqui estão as Vagas disponiveis para você</h1>
+  <div class="dropdown">
+    <button class="login-btn-header dropdown-btn">Minha Conta</button>
+    <div class="dropdown-content">
+      <a href="../EditProfile/edit_profile.html">Editar Dados</a>
+      <a href="  ../Feed/feed_freelancers.html">Freelancers</a>
+      <a href="../Feed/feed_vagas.html">Mural de serviços</a>
+
+      <a href="#" onclick="logout()">Sair da Conta</a>
+    </div>
+  </div>
+
+
+
+
+</header>
+
+<body>
+
+
+  <title>Feed de Vagas</title>
+  <div class="faixa"></div>
+  <header>
+    <div class="header-feed-vagas">
+      <div class="titulo-header">
+        <a href="/index.html"><img src=".\assets\logo.png" alt="" /></a>
+        <h4>VAGAS DISPONÍVEIS</h4>
+      </div>
+      <div class="perfil-icon" id="agora">
+        <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52" fill="none">
+          <circle cx="26" cy="26" r="24.5" fill="white" stroke="#2F1854" stroke-width="3" />
+          <path
+            d="M26.4126 24.7619C30.2889 24.7619 33.4285 21.6223 33.4285 17.746C33.4285 13.8698 30.2889 10.7302 26.4126 10.7302C22.5363 10.7302 19.3967 13.8698 19.3967 17.746C19.3967 21.6223 22.5363 24.7619 26.4126 24.7619ZM26.4126 28.2698C21.7295 28.2698 12.3809 30.6202 12.3809 35.2857V38.7937H40.4444V35.2857C40.4444 30.6202 31.0957 28.2698 26.4126 28.2698Z"
+            fill="#2F1854" />
+        </svg>
+        <h3 class="agora">FREELANCER</h3>
+      </div>
+    </div>
+    <hr />
+  </header>
+  <div class="feed_vagas">
+    <div class="filtro-vagas">
+      <h3 style="text-align: center">Pesquisar vagas por </h3>
+      <div class="habilidades-filter">
+        <p class="filter-title">Areas de Domínio</p>
+        <select name="habilidades" id="habilidades-filter">
+          <option value="null">Areas de Domínio</option>
+          <option value="Mecânica">Mecânica</option>
+          <option value="Cozinha">Cozinha</option>
+          <option value="Limpeza">Limpeza</option>
+          <option value="Elétrica">Elétrica</option>
+          <option value="Eventos">Eventos</option>
+          <option value="Carpintaria">Carpintaria</option>
+          <option value="Garçom">Garçom</option>
+          <option value="Marceneiro">Marceneiro</option>
+          <option value="Eletricista">Eletricista</option>
+          <option value="Cabeleireiro">Cabeleireiro</option>
+          <option value="Pedreiro">Pedreiro</option>
+          <option value="Jardinagem">Jardinagem</option>
+          <option value="Pintor">Pintor</option>
+          <option value="Designer de Interiores">Designer de Interiores</option>
+          <option value="Programador">Programador</option>
+          <option value="Fotógrafo">Fotógrafo</option>
+          <option value="Advogado">Advogado</option>
+        </select>
+      </div>
+      <div class="filter-localizacao">
+            
+        <p class="filter-title">LOCALIZAÇÃO</p>
+        <select name="habilidades" id="localizao-filter">
+          <option value="null">Cidade</option>
+          <option value="São Paulo">São Paulo</option>
+          <option value="Rio de Janeiro">Rio de Janeiro</option>
+          <option value="Belo Horizonte">Belo Horizonte</option>
+          <option value="Porto Alegre">Porto Alegre</option>
+          <option value="Curitiba">Curitiba</option>
+          <option value="Salvador">Salvador</option>
+          <option value="Fortaleza">Fortaleza</option>
+          <option value="Brasília">Brasília</option>
+          <option value="Recife">Recife</option>
+          <option value="Manaus">Manaus</option>
+          <option value="Belém">Belém</option>
+          <option value="Goiânia">Goiânia</option>
+          <option value="Vitória">Vitória</option>
+          <option value="Florianópolis">Florianópolis</option>
+          <option value="Natal">Natal</option>
+          <option value="Cuiabá">Cuiabá</option>
+          <option value="Campo Grande">Campo Grande</option>
+          <option value="João Pessoa">João Pessoa</option>
+          <option value="São Luís">São Luís</option>
+          <option value="Aracaju">Aracaju</option>
+          <option value="Maceió">Maceió</option>
+          <option value="Teresina">Teresina</option>
+          <option value="Macapá">Macapá</option>
+          <option value="Boa Vista">Boa Vista</option>
+          <option value="Rio Branco">Rio Branco</option>
+          <option value="Palmas">Palmas</option>
+          <option value="Porto Velho">Porto Velho</option>
+
+        </select>
+      </div>
+      <button onclick="Pesquisar()" id="Pesquisar">Pesquisar</button>
+    </div>
+    <div class="feed-freelancers-container" id="vagas-list"></div>
+  </div>
+
+  <script>
+  
+  async function Pesquisar() {
+
+     const Localizacao = document.getElementById("localizao-filter").value;
+      const LocalizacaoTratada = Localizacao === "null" ? null : Localizacao;
+      const AreaDeDominio = document.getElementById("habilidades-filter").value;
+      const AreaDeDominioTratada = AreaDeDominio === "null" ? null : AreaDeDominio;
+      console.log("teste"+Localizacao);
+      console.log("teste"+AreaDeDominio);
+      try {
+        const response = await fetch('http://localhost:3000/vagas/TodasVagas');
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        
+        const vaga = await response.json();
+        const vagasList = document.getElementById('vagas-list');
+        if (!vagasList) throw new Error('Elemento com ID "vagas-list" não encontrado.');
+        vagasList.innerHTML = ''; // Limpa qualquer conteúdo existente
+        let vagasPesquisadasPorad = [];
+       
+        if (AreaDeDominioTratada && !LocalizacaoTratada) {
+      vagasPesquisadasPorad = vaga.filter(
+        (vaga) => vaga.AreaDeDominio=== AreaDeDominio
+      );
+    } else if (AreaDeDominioTratada && LocalizacaoTratada) {
+      vagasPesquisadasPorad = vaga.filter(
+        (vaga) => vaga.AreaDeDominio === AreaDeDominio && vaga.cidade === Localizacao
+      );
+    } else if (!AreaDeDominioTratada && LocalizacaoTratada) {
+      vagasPesquisadasPorad = vaga.filter(
+        (vaga) => vaga.cidade === Localizacao
+      );
+    }
+  
+
+        vagasPesquisadasPorad.forEach(vaga => {
+
+          // Cria o HTML dinamicamente com as vagas formatadas
+          const vagaHTML = `
+          <div class="cards-freelas">
+            <div class="freela-info">
+              <div class="info">
+                <div class="info-1">
+                  <details ontoggle>
+                    <summary class="freela-name">${vaga.AreaDeDominio}</summary>
+                  <p class="freela-idade">Descricao :${vaga.descricao}</p>
+                     <p class="p-color">Cidade :${vaga.cidade}</p>
+                   
+               </div>
+              </div>
+            </div>
+            <div class="contato-aval">
+              <button class="Proposta" onclick="fazerProposta('${vaga._id}')">
+                FAZER UMA PROPOSTA
+              </button>
+             </div>
+          </div>
+        `;
+          vagasList.innerHTML += vagaHTML;
+        });
+
+      } catch (error) {
+        console.error('Erro ao carregar vagas:', error);
+      }
+    }
+
+    async function carregarVagas() {
+
+      try {
+        const response = await fetch('http://localhost:3000/vagas/TodasVagas');
+        const result = await response.json();
+
+
+        if (result && result.length > 0) {
+          const vagasList = document.getElementById('vagas-list');
+          vagasList.innerHTML = ''; // Limpa qualquer conteúdo existente
+
+          result.forEach(vaga => {
+            localStorage.setItem("IdVaga", vaga._id);
+            // Cria o HTML dinamicamente com as vagas formatadas
+            const vagaHTML = `
+          <div class="cards-freelas">
+            <div class="freela-info">
+              <div class="info">
+                <div class="info-1">
+                  <details ontoggle>
+                  <summary class="freela-name">${vaga.AreaDeDominio}</summary>
+                  <p class="freela-idade">Descricao :${vaga.descricao}</p>
+                  <p class="freela-idade">Cidade :${vaga.cidade}</p>
+               </div>
+              </div>
+            </div>
+            <div class="contato-aval">
+              <button class="Proposta" onclick="fazerProposta('${vaga._id}')">
+                FAZER UMA PROPOSTA
+              </button>
+            </div>
+          </div>
+        `;
+            vagasList.innerHTML += vagaHTML;
+          });
+        } else {
+
+        }
+      } catch (error) {
+        console.error('Erro ao carregar vagas:', error);
+      }
+    }
+
+    // Função para armazenar a vagaId e redirecionar
+    function fazerProposta(_id) {
+      console.log("id_vaga" + _id)
+      //Armazena o ID da vaga no localStorage
+      window.location.href = '../Feed/proposta.html'; // Redireciona para a página de proposta
+
+
+    }
+
+
+
+    // Chama a função ao carregar a página
+    document.addEventListener('DOMContentLoaded', carregarVagas);
+  </script>
+
+
+
+
+</body>
+
+<footer class="rodape">
+  <div class="rod1">
+    <p style="filter: drop-shadow(3px 5px 4px rgb(145, 0, 213)); font-weight: bold; font-size: 20px">SOCIAL</p>
+    <div class="social">
+      <a href="#"><i class="fab fa-instagram" id="social"></i></a>
+      <a href="#"><i class="fab fa-facebook-f" id="social"></i></a>
+      <a href="#"><i class="fab fa-whatsapp" id="social"></i></a>
+      <a href="#"><i class="fab fa-twitter" id="social"></i></a>
+    </div>
+  </div>
+  <div class="rod2">
+    <p>Termos e Condições</p>
+    <p>Sobre nós</p>
+    <p>Parceiros</p>
+  </div>
+  <div class="rod3">
+    <p style="filter: drop-shadow(3px 5px 4px rgb(145, 0, 213)); font-weight: bold; font-size: 20px">CONTATO</p>
+    <div class="contact">
+      <p>meetjobs@gmail.com</p>
+      <p>+55 (31) 99999-9999</p>
+    </div>
+  </div>
+</footer>
+
+
+
+</html>

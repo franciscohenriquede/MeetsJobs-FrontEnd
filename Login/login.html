@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Home/style.css" class="style" />
+    <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon" />
+       <link rel="stylesheet" href="../Home/home.css" />
+    <title>Página de Login</title>
+  </head>
+
+  <body>
+    <div class="fundo-login">
+      <div class="card-login">
+        <div class="logo-login">
+          <a href="index.html"><img src="../assets/logo.png" alt="Logo" /></a>
+          <h3>MEET JOBS</h3>
+        </div>
+        <form
+          id="loginForm"
+          class="form-login"
+          onsubmit="realizar(); return false;"
+        >
+          <div class="input-login">
+            <input
+              type="email"
+              placeholder="EMAIL"
+              id="login_email"
+              name="email"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Digite sua senha"
+              id="login_senha"
+              name="senha"
+              required
+            />
+          </div>
+          <div class="btn-login-cadastro">
+            <div>
+              <button class="btn-login" type="submit">ENTRAR</button>
+            </div>
+            <div class="login-cadastro">
+              <p>Não possui cadastro?</p>
+              <a href="../Cadastro/escolha_cadastro.html"
+                ><button class="btn-cadastro" type="button">
+                  CADASTRE-SE
+                </button></a
+              >
+            </div>
+          </div>
+        </form>
+        <p id="responseMessage"></p>
+        <!-- Para mostrar mensagens de erro ou sucesso -->
+      </div>
+    </div>
+
+    <script>
+      async function realizar() {
+        const email = document.getElementById("login_email").value;
+        const senha = document.getElementById("login_senha").value;
+  
+        const response = await fetch("https://meetsjobs-backend.onrender.com/user/login", {
+          method: "POST",
+          credentials: "include", // envia cookies
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password: senha }),
+        });
+
+        const result = await response.json();
+
+        const responseMessage = document.getElementById("responseMessage");
+        if (result.msg === "Autenticação realizada com sucesso!") {
+          responseMessage.innerText = result.msg;
+          responseMessage.style.color = "green";
+          // Salva o token no localStorage e o nome do usuário
+          localStorage.setItem("token", result.token);
+          localStorage.setItem("userName", result.name);
+          localStorage.setItem("userEndereco", result.endereco);
+          localStorage.setItem("userEmail", result.email); //  // Salva o nome do usuário
+          localStorage.setItem("usertipo", result.tipo);
+          localStorage.setItem("userid", result._id);  
+          localStorage.setItem("userCidade", result.cidade);  
+          localStorage.setItem("userprofissao", result.profissao);
+          console.log("Token no localStorage:", result.name);
+          console.log("Nome no localStorage:", result.tipo);
+          console.log("id no localStorage:", result._id);
+          console.log("aaaaaa  "+ result.profissao)
+          console.log("Endereco "+ result.endereco )
+          console.log("Endereco cidade "+ result.cidade )
+          if (result.tipo === "Freelancer") {
+           window.location.replace("../Home/indexLogado.html");
+          } else if (result.tipo === "Contratante") {
+            window.location.replace("../Home/IndexContratante.html");
+          }
+        } else {
+          responseMessage.innerText = result.msg;
+          responseMessage.style.color = "red";
+        }
+      }
+    </script>
+  </body>
+
+
+
+  </html>
